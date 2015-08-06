@@ -14,6 +14,7 @@
 <ul>
 <li>user accounts</li>
 <li>criteria/bonus challenges</li>
+<li>report words per minute</li>
 </ul>
 
 ## Pie in the sky
@@ -27,3 +28,19 @@
 <li>what does the game actually look like? (campy arcade game vs. simple typing tool)</li>
 <li>how do users give us their initials/username for the leaderboard? (if there is no game over state, would need to get their name either at the beginning or at the end of the first level)</li>
 </ul>
+
+## Tech Stack
+Server
+ - What do we want to persist and send to the client?
+  - Scores ("Top 20")
+    - User initials
+  - User information (stretch - record with their high score, login, etc)
+  - Challenge Content (maybe - if data gets too big for client)
+
+Client
+ - Challenge Content
+  - List of code blocks for users to type out
+ - Track user's current information
+  - Level
+  - High Score (sent to db if 'high score')
+ - Get user initials
