@@ -24,32 +24,35 @@ app.use(methodOverride());
 ///////////
 // MODELS
 ///////////
-// var User = require('./server/users/userModel.js');
+var User = require('./users/userModel.js');
+
 
 ///////////
 // ROUTES
 ///////////
-
-app.get('/test', function (req, res){
+app.get('/api/test', function (req, res){
   console.log('inside of the test route');
   res.json({a:1});
 });
 
-// // AUTH + SESSIONS
-// app.post('/api/sessions', function(req, res) {
-//   var user = req.body;
+app.post('/api/users', function (req, res){ //signup
+  var user = new User();
+  user.email = req.body.email;
+  user.password = req.body.password;
+  user.initials = req.body.initials;
+  user.highscore = 0;
 
-//   User.findOne({
-//     email: user.email
-//   }, function(err, found) {
-//     if (err) {
-//       console.log('ERROR:', err);
-//       res.send(err);
-//     }
-//     console.log('FOUND:', found);
-//     res.json(found);
-//   })
-// });
+  // IF SENT USER DATA FAILS ANY VALIDATIONS, SEND ERROR
+  // OTHERWISE, SEND BACK NEW USER
+  user.save(function(err) {
+    if (err) {
+      console.log('ERROR:', err);
+      res.send(err);
+    }
+    res.json(user);
+  });
+});
+
 
 /////////////////
 // LOAD ANGULAR
@@ -63,5 +66,5 @@ app.get('/test', function (req, res){
 ///////////
 // LISTEN
 ///////////
-app.listen(8080);
+app.listen(8080); //change this for production
 console.log("App listening on port 8080");
