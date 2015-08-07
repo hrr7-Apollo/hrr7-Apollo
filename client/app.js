@@ -1,13 +1,13 @@
-angular.module('app', ['ui.router'])
+angular.module('app', ['ui.router', 'app.game'])
 
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 
   $urlRouterProvider.otherwise('/');
 
-  var home = {
-    name: 'home',
+  var game = {
+    name: 'game',
     url: '/',
-    templateUrl: './home/home.html'
+    templateUrl: './game/game.html'
   };
 
   var leaderboard = {
@@ -17,11 +17,13 @@ angular.module('app', ['ui.router'])
   };
 
   $stateProvider
-    .state(home)
+    .state(game)
     .state(leaderboard)
 
 }])
 
 .run(['$state', function($state){
-  $state.transitionTo('home');
+  $state.transitionTo('game');
 }]);
+
+
