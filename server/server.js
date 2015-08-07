@@ -25,17 +25,15 @@ app.use(methodOverride());
 // MODELS
 ///////////
 var User = require('./users/userModel.js');
+var Game = require('./games/gameModel.js');
 
 
 ///////////
 // ROUTES
 ///////////
-app.get('/api/test', function (req, res){
-  console.log('inside of the test route');
-  res.json({a:1});
-});
 
-app.post('/api/users', function (req, res){ //signup
+// SIGNUP
+app.post('/api/users', function (req, res){
   var user = new User();
   user.email = req.body.email;
   user.password = req.body.password;
@@ -53,13 +51,45 @@ app.post('/api/users', function (req, res){ //signup
   });
 });
 
+// HIGH SCORES
+app.get('/api/minHighscore', function (req, res){
+  //look through data base and retrieve lowest highscore
+  Game.find({}).sort('highscore').exec(function (err, games) {
+    if (err) {
+      console.log('ERROR',err);
+      res.send(err);
+    }
+
+    //send highscore back to frontend (this may be the wrong index)
+    console.log('GAMES:', games);
+    res.json(games[0].highscore);
+  });
+});
+
+// GAMES
+app.post('/api/games', function (req, res){
+  var game = new Game();
+  game.initials = req.body.initials;
+  game.highscore = req.body.highscore;
+  game.date = new Date();
+
+  game.save(function(err){
+    if (err) {
+      console.log('ERROR:', err);
+      res.send(err);
+    }
+
+    res.json(game);
+  });
+});
+
 
 /////////////////
 // LOAD ANGULAR
 /////////////////
 // load the single view file (angular will handle the page changes on the front-end)
 // app.get('*', function(req, res) {
-//   res.sendfile('./client/app/index.html');
+//   res.sendfile('./client/index.html');
 // });
 
 
