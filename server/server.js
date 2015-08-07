@@ -12,9 +12,8 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 ///////////
 // CONFIG
 ///////////
-mongoose.connect('mongodb://localhost/apollo');  //UPDATE
-
-app.use(express.static(__dirname + '/client/app'));             // set the static files location /client/app/img will be /img for users
+mongoose.connect('mongodb://localhost/apollo');                 // UPDATE when we change the db name in deployment
+app.use(express.static(__dirname + '/../client/'));             // set the static files location /client/img will be /img for users
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
@@ -82,15 +81,6 @@ app.post('/api/games', function (req, res){
     res.json(game);
   });
 });
-
-
-/////////////////
-// LOAD ANGULAR
-/////////////////
-// load the single view file (angular will handle the page changes on the front-end)
-// app.get('*', function(req, res) {
-//   res.sendfile('./client/index.html');
-// });
 
 
 ///////////
