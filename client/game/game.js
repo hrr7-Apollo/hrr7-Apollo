@@ -3,11 +3,18 @@ angular.module('app.game', [])
     // get challenge data from the database
     // and that data going to have the content and timeLimit
 
+    $scope.gameOver = false;
+
     var stop;
     var start = function(timeLimit){
       stop = $interval(function(){
         $scope.timeLimit--;
-      }, 1000, timeLimit);
+
+        if ($scope.timeLimit === 0){
+          $interval.cancel(stop);
+          $scope.gameOver = true;
+        }
+      }, 1000);
     };
     start();
 
@@ -15,7 +22,7 @@ angular.module('app.game', [])
       {
         level: 0,
         content: "var this",
-        timeLimit: 60
+        timeLimit: 5
       }, {
         level: 1,
         content: "getting better dude",
