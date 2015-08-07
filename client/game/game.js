@@ -1,26 +1,18 @@
 angular.module('app.game', [])
-  .controller('gameController', function($scope, $timeout, $interval){
-    $scope.challangeFixtures = [
-      {
-        level: 0,
-        content: "var this",
-        timeLimit: 60
-      }, {
-        level: 1,
-        content: "getting better dude",
-        timeLimit: 90
-      }, {
-        level: 2,
-        content: "just put whatever",
-        timeLimit: 160
-      }
-    ];
-    $scope.level = 0;
-    $scope.challenge = $scope.challangeFixtures[$scope.level]['content'];
-    $scope.timeLimit = $scope.challangeFixtures[$scope.level]['timeLimit'];
+  .controller('gameController', function($scope, $timeout, $interval, $http){
+    $scope.challangeFixtures;
+
+    // simulates get request by accessing challengeFixtures.JSON file
+    $http.get('challengeFixtures.JSON')
+    .then(function(res){
+      $scope.challangeFixtures = res.data;
+      $scope.level = 0;
+      $scope.challenge = $scope.challangeFixtures[$scope.level]['content'];
+      $scope.timeLimit = $scope.challangeFixtures[$scope.level]['timeLimit'];
+    });
+
     $scope.totalScore = 0;
     $scope.showMessage = false;
-
 
     $scope.gameOver = false;
     var stop;
