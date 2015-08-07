@@ -16,9 +16,16 @@ angular.module('app', ['ui.router', 'app.game'])
     templateUrl: './leaderboard/leaderboard.html'
   };
 
+  var setInitials = {
+    name: 'setInitials',
+    url: '/setInitials',
+    templateUrl: './leaderboard/setInitials.html'
+  };
+
   $stateProvider
     .state(game)
     .state(leaderboard)
+    .state(setInitials)
 
 }])
 
