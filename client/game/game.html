@@ -5,14 +5,16 @@
     <span><strong>Time Left: </strong>{{ timeLimit }}</span>
   </header>
   <div>
+    <div class="gameOver" ng-if="gameOver">GAME OVER</div>
+
     <pre id="gameContent">{{ challenge }}</pre>
     <form ng-submit="checkSolution(playerSolution)">
       <!-- Stretch idea: cols and rows could be added dynamically based on gameContent -->
-      <textarea ng-model="playerSolution" name="gameInput" id="" cols="60" rows="10"></textarea>
+      <textarea ng-model="playerSolution" name="gameInput" id="" cols="60" rows="10" ng-disabled="gameOver"></textarea>
       <br>
       <span ng-if="showMessage">{{ submitMessage }}</span>
       <br>
-      <button>Submit solution</button>
+      <button ng-disabled="gameOver">Submit solution</button>
     </form>
   </div>
 </div>
