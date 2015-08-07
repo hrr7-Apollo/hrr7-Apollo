@@ -1,0 +1,18 @@
+<div ng-controller="gameController">
+  <header>
+    <span><strong>DLR</strong></span>
+    <span><strong>Total Score: </strong>5000002</span>
+    <span><strong>Time Left: </strong>5:03</span>
+  </header>
+  <div>
+    <pre id="gameContent">{{ challenge }}</pre>
+    <form ng-submit="checkSolution(playerSolution)">
+      <!-- Stretch idea: cols and rows could be added dynamically based on gameContent -->
+      <textarea ng-model="playerSolution" name="gameInput" id="" cols="60" rows="10"></textarea>
+      <br>
+      <span ng-if="showMessage">{{ submitMessage }}</span>
+      <br>
+      <button>Submit solution</button>
+    </form>
+  </div>
+</div>
