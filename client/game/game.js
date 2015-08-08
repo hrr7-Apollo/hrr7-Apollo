@@ -1,5 +1,6 @@
 angular.module('app.game', [])
-  .controller('gameController', function($scope, $timeout, $interval, $http){
+  .controller('gameController', function($scope, $timeout, $interval, $http, gameOver, trackScore){
+    angular.extend($scope, gameOver);
     $scope.challangeFixtures;
 
     // simulates get request by accessing challengeFixtures.JSON file
@@ -11,7 +12,7 @@ angular.module('app.game', [])
       $scope.timeLimit = $scope.challangeFixtures[$scope.level]['timeLimit'];
     });
 
-    $scope.totalScore = 0;
+    $scope.totalScore = trackScore;
     $scope.showMessage = false;
 
     $scope.gameOver = false;
@@ -23,6 +24,7 @@ angular.module('app.game', [])
         if ($scope.timeLimit === 0){
           $interval.cancel(stop);
           $scope.gameOver = true;
+          gameOver.checkScore($scope.totalScore);
         }
       }, 1000);
     };
@@ -44,7 +46,7 @@ angular.module('app.game', [])
 
         // get user's score for this level and add it to total score
         $scope.score = $scope.timeLimit;
-        $scope.totalScore += $scope.score;
+        trackScore.totalScore += $scope.score;
 
         $timeout(function(){
           // removes win message
@@ -63,4 +65,35 @@ angular.module('app.game', [])
         $scope.showMessage = true;
       }
     }
+  })
+  .factory('gameOver', function($http, $state){
+    var obj = {};
+    obj.checkScore = function(playerScore) {
+      $http.get('/api/minHighscore')
+        .then(function(res){
+          var minHighscore = res.data;
+          if (playerScore.totalScore < minHighscore) {
+            $state.transitionTo('leaderboard');
+          } else {
+            $state.transitionTo('setInitials');
+          }
+        })
+    };
+
+    obj.submitScore = function(playerInitials, playerScore){
+      $http.post('/api/games', {
+        initials: playerInitials,
+        highscore: playerScore
+      }).then(function(res){
+        $state.transitionTo('leaderboard');
+      });
+    };
+
+    return obj;
+  })
+  .factory('trackScore', function(){
+    // this creates a score variable that we can pass to the setInitials view
+    var obj = {};
+    obj.totalScore = 0;
+    return obj;
   })
