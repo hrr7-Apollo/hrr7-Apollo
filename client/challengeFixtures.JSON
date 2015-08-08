@@ -2,14 +2,14 @@
   {
     "level": 0,
     "content": "var this",
-    "timeLimit": 10
+    "timeLimit": 20
   }, {
     "level": 1,
     "content": "getting better dude",
-    "timeLimit": 2
+    "timeLimit": 10
   }, {
     "level": 2,
     "content": "just put whatever",
-    "timeLimit": 2
+    "timeLimit": 1
   }
 ]
