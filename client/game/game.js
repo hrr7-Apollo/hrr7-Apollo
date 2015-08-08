@@ -80,19 +80,10 @@ angular.module('app.game', [])
         })
     };
 
-    obj.submitScore = function(playerInitials, playerScore){
-      $http.post('/api/games', {
-        initials: playerInitials,
-        highscore: playerScore
-      }).then(function(res){
-        $state.transitionTo('leaderboard');
-      });
-    };
-
     return obj;
   })
+  // this creates a score variable that we can pass to the setInitials view
   .factory('trackScore', function(){
-    // this creates a score variable that we can pass to the setInitials view
     var obj = {};
     obj.totalScore = 0;
     return obj;
