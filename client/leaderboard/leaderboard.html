@@ -1,1 +1,12 @@
-<h1>Leaderboard</h1>
+<div ng-controller="leaderboardController">
+  <h1>Leaderboard</h1>
+  <ol>
+    <li ng-repeat="score in scores">
+      <span>{{score.initials}}</span>
+      <span>{{score.highscore}}</span>
+      <!-- format the date leter with moment.js -->
+      <span>{{score.date | date:"MM/dd/yyyy" }}</span>
+    </li>
+  </ol>
+</div>
+<button ng-click="startGame()">Play again</button>
