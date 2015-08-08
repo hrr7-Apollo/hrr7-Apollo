@@ -9,6 +9,7 @@ var morgan = require('morgan');             // log requests to the console (expr
 var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
+
 ///////////
 // CONFIG
 ///////////
@@ -20,17 +21,18 @@ app.use(bodyParser.json());                                     // parse applica
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride());
 
+
 ///////////
 // MODELS
 ///////////
 var User = require('./users/userModel.js');
 var Game = require('./games/gameModel.js');
+var ChallengeBatch = require('./challengeBatches/challengeBatchModel.js');
 
 
 ///////////
 // ROUTES
 ///////////
-
 // SIGNUP
 app.post('/api/users', function (req, res){
   var user = new User();
@@ -53,15 +55,17 @@ app.post('/api/users', function (req, res){
 // HIGH SCORES
 app.get('/api/minHighscore', function (req, res){
   //look through data base and retrieve lowest highscore
-  Game.find({}).sort('highscore').exec(function (err, games) {
-    if (err) {
-      console.log('ERROR',err);
-      res.send(err);
-    }
+  Game.find({})
+    .sort('-highscore')
+    .exec(function (err, games) {
+      if (err) {
+        console.log('ERROR',err);
+        res.send(err);
+      }
 
-    //send highscore back to frontend (this may be the wrong index)
-    console.log('GAMES:', games);
-    res.json(games[0].highscore);
+      // sends back 10th highscore
+      // arbitrary # of how many you want in Leaderboard (maybe extract to variable)
+      res.json(games[9].highscore);
   });
 });
 
@@ -79,6 +83,36 @@ app.post('/api/games', function (req, res){
     }
 
     res.json(game);
+  });
+});
+
+// LEADERBOARD
+app.get('/api/leaderboard', function (req, res){
+  Game.find({})
+    .sort('-highscore')
+    .limit(10)
+    .exec(function (err, games){
+      if(err){
+        console.log('ERROR:', err);
+        res.send(err);
+      }
+
+      res.json(games);
+    });
+});
+
+// CHALLENGE BATCH
+app.get('/api/challengeBatch/:id', function (req, res){
+  var batch = req.body.batch;
+
+  ChallengeBatch.find({id: req.params.id})
+    .exec(function(err, batch){
+      if (err) {
+        console.log('ERROR:', err);
+        res.end(err);
+      }
+
+      res.json(batch);
   });
 });
 
