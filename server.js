@@ -14,7 +14,6 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 // CONFIG
 ///////////
 // DB_URI enviroment variable contains mongoLab url for production server
-DB_URI = process.env.DB_URI || 'mongodb://localhost/apollo';
 mongoose.connect(DB_URI);
 var db = mongoose.connection;
 // Log db connection errors
