@@ -1,0 +1,9 @@
+<div ng-controller="setInitialsController">
+<h1>Congratulations player</h1>
+<span>You scored {{ totalScore.totalScore }}, please enter your 3-letters initials</span>
+<!-- TODO: check for (minlength = 3) before submitting -->
+
+<input name="playerInitials" ng-model="playerInitials" type="text" maxlength="3"  novalidate>
+<button ng-click="submitScore(playerInitials, totalScore.totalScore)">Submit</button>
+
+</div>

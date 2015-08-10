@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var gameSchema = mongoose.Schema({
+var gameSchema = new mongoose.Schema({
   initials: {
     type: String
   },

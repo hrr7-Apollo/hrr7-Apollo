@@ -1,20 +1,10 @@
 angular.module('app.game', [])
-  .controller('gameController', function($scope, $timeout, $interval, $http){
-    $scope.challangeFixtures;
-
-    // simulates get request by accessing challengeFixtures.JSON file
-    $http.get('challengeFixtures.JSON')
-    .then(function(res){
-      $scope.challangeFixtures = res.data;
-      $scope.level = 0;
-      $scope.challenge = $scope.challangeFixtures[$scope.level]['content'];
-      $scope.timeLimit = $scope.challangeFixtures[$scope.level]['timeLimit'];
-    });
-
-    $scope.totalScore = 0;
-    $scope.showMessage = false;
+  .controller('gameController', function($scope, $timeout, $interval){
+    // get challenge data from the database
+    // and that data going to have the content and timeLimit
 
     $scope.gameOver = false;
+
     var stop;
     var start = function(timeLimit){
       stop = $interval(function(){
@@ -28,23 +18,39 @@ angular.module('app.game', [])
     };
     start();
 
+    $scope.challangeFixtures = [
+      {
+        level: 0,
+        content: "var this",
+        timeLimit: 5
+      }, {
+        level: 1,
+        content: "getting better dude",
+        timeLimit: 90
+      }, {
+        level: 2,
+        content: "just put whatever",
+        timeLimit: 160
+      }
+    ];
+
+    $scope.level = 0;
+    $scope.showMessage = false;
+
+    $scope.challenge = $scope.challangeFixtures[$scope.level]['content'];
+    $scope.timeLimit = $scope.challangeFixtures[$scope.level]['timeLimit'];
 
     $scope.checkSolution = function(playerSolution){
       if ($scope.challenge === playerSolution) {
-        // stops timer
-        $interval.cancel(stop);
-        stop = undefined;
+        $scope.level += 1;
 
         // shows 'correct' message
         $scope.submitMessage = 'You are fucking amazing!'
         $scope.showMessage = true;
 
-        // increase user's level
-        $scope.level += 1;
-
-        // get user's score for this level and add it to total score
-        $scope.score = $scope.timeLimit;
-        $scope.totalScore += $scope.score;
+        // stops timer
+        $interval.cancel(stop);
+        stop = undefined;
 
         $timeout(function(){
           // removes win message
