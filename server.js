@@ -13,17 +13,18 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 ///////////
 // CONFIG
 ///////////
-//DB_URI enviroment variable contains mongoLab url for production server
+// DB_URI enviroment variable contains mongoLab url for production server
 DB_URI = process.env.DB_URI || 'mongodb://localhost/apollo';
 mongoose.connect(DB_URI);
 var db = mongoose.connection;
+// Log db connection errors
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("Mongo DB connection is open");
 });
-
 module.exports = db;
-app.use(express.static(__dirname + '/client/'));             // set the static files location /client/img will be /img for users
+
+app.use(express.static(__dirname + '/client/'));                // set the static files location /client/img will be /img for users
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
