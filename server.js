@@ -21,7 +21,7 @@ db.once('open', function() {
 });
 
 module.exports = db;
-app.use(express.static(__dirname + '/../client/'));             // set the static files location /client/img will be /img for users
+app.use(express.static(__dirname + '/client/'));             // set the static files location /client/img will be /img for users
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
@@ -32,9 +32,9 @@ app.use(methodOverride());
 ///////////
 // MODELS
 ///////////
-var User = require('./users/userModel.js');
-var Game = require('./games/gameModel.js');
-var ChallengeBatch = require('./challengeBatches/challengeBatchModel.js');
+var User = require('./server/users/userModel.js');
+var Game = require('./server/games/gameModel.js');
+var ChallengeBatch = require('./server/challengeBatches/challengeBatchModel.js');
 
 
 ///////////
