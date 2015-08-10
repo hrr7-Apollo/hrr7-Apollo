@@ -2,13 +2,12 @@
 
 ## Minimum features for complete product
 <ul>
-<li>ability to start a new game - DONE</li>
-<li>be able to complete challenges (code blocks?) in text field - DONE</li>
-<li>score based on time completed in (for each level and accumulated for this session) (have a base points number that you get for completing the level, and you get extra points for completing it faster) (current total score visible on the game screen) - DONE</li>
-<li>database that holds leaderboard info of highest current scores - DONE</li>
-<li>page/view for leaderboard (possibly shown to the player after completing each level) - DONE</li>
-
-<li>levels of increasing difficulty - TO DO</li>
+<li>ability to start a new game</li>
+<li>be able to complete challenges (code blocks?) in text field</li>
+<li>score based on time completed in (for each level and accumulated for this session) (have a base points number that you get for completing the level, and you get extra points for completing it faster) (current total score visible on the game screen)</li>
+<li>levels of increasing difficulty</li>
+<li>database that holds leaderboard info of highest current scores</li>
+<li>page/view for leaderboard (possibly shown to the player after completing each level)</li>
 </ul>
 
 ## Would be nice
@@ -45,16 +44,3 @@ Client
   - Level
   - High Score (sent to db if 'high score')
  - Get user initials
-
-## Priorities as of 8/10/2015
-Deployment (Greg / Derek)
-Security for POSTing fake scores (Diedra)
-Seeding Challenges of ranging difficulty (Diedra)
-Create endpoint to fetch challenges (Greg / Derek)
-Testing (Diedra / Nick)
-
-Documentation
-Parsing user input
-Grunt / Gulp
-Design?
-
