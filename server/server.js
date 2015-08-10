@@ -14,6 +14,13 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 // CONFIG
 ///////////
 mongoose.connect('mongodb://localhost/apollo');                 // UPDATE when we change the db name in deployment
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("Mongo DB connection is open");
+});
+
+module.exports = db;
 app.use(express.static(__dirname + '/../client/'));             // set the static files location /client/img will be /img for users
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
@@ -121,5 +128,6 @@ app.get('/api/challengeBatch/:id', function (req, res){
 ///////////
 // LISTEN
 ///////////
-app.listen(8080); //change this for production
+var port = process.env.PORT || 8080
+app.listen(port); //change this for production
 console.log("App listening on port 8080");
