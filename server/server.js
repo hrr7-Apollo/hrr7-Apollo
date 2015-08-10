@@ -101,19 +101,20 @@ app.get('/api/leaderboard', function (req, res){
     });
 });
 
-// CHALLENGE BATCH
+// CHALLENGE BATCH - INCOMPLETE (RETURNS [])
 app.get('/api/challengeBatch/:id', function (req, res){
-  var batch = req.body.batch;
+  console.log(req.params.id);
 
-  ChallengeBatch.find({id: req.params.id})
-    .exec(function(err, batch){
+  ChallengeBatch.find({})
+    .exec(function (err, batch){
       if (err) {
         console.log('ERROR:', err);
-        res.end(err);
+        res.send(err);
       }
 
+      console.log('BATCH:', batch);
       res.json(batch);
-  });
+    });
 });
 
 
