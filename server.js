@@ -13,7 +13,9 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 ///////////
 // CONFIG
 ///////////
-mongoose.connect('mongodb://localhost/apollo');                 // UPDATE when we change the db name in deployment
+//DB_URI enviroment variable contains mongoLab url for production server
+DB_URI = process.env.DB_URI || 'mongodb://localhost/apollo';
+mongoose.connect(DB_URI);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -130,4 +132,4 @@ app.get('/api/challengeBatch/:id', function (req, res){
 ///////////
 var port = process.env.PORT || 8080
 app.listen(port); //change this for production
-console.log("App listening on port 8080");
+console.log("App listening on port " + port);
