@@ -5,16 +5,26 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 
-var morgan = require('morgan');             // log requests to the console (express4)
-var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
-var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
+var morgan = require('morgan');                   // log requests to the console (express4)
+var bodyParser = require('body-parser');          // pull information from HTML POST (express4)
+var methodOverride = require('method-override');  // simulate DELETE and PUT (express4)
 
 
 ///////////
 // CONFIG
 ///////////
-mongoose.connect('mongodb://localhost/apollo');                 // UPDATE when we change the db name in deployment
-app.use(express.static(__dirname + '/../client/'));             // set the static files location /client/img will be /img for users
+// DB_URI enviroment variable contains mongoLab url for production server
+DB_URI = process.env.DB_URI || 'mongodb://localhost/apollo';
+mongoose.connect(DB_URI);
+var db = mongoose.connection;
+// Log database connection errors
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("Mongo DB connection is open");
+});
+module.exports = db;
+
+app.use(express.static(__dirname + '/client/'));                // set the static files location /client/img will be /img for users
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
@@ -25,9 +35,9 @@ app.use(methodOverride());
 ///////////
 // MODELS
 ///////////
-var User = require('./users/userModel.js');
-var Game = require('./games/gameModel.js');
-var ChallengeBatch = require('./challengeBatches/challengeBatchModel.js');
+var User = require('./server/users/userModel.js');
+var Game = require('./server/games/gameModel.js');
+var ChallengeBatch = require('./server/challengeBatches/challengeBatchModel.js');
 
 
 ///////////
@@ -101,24 +111,26 @@ app.get('/api/leaderboard', function (req, res){
     });
 });
 
-// CHALLENGE BATCH
+// CHALLENGE BATCH - INCOMPLETE (RETURNS [])
 app.get('/api/challengeBatch/:id', function (req, res){
-  var batch = req.body.batch;
+  console.log(req.params.id);
 
-  ChallengeBatch.find({id: req.params.id})
-    .exec(function(err, batch){
+  ChallengeBatch.find({})
+    .exec(function (err, batch){
       if (err) {
         console.log('ERROR:', err);
-        res.end(err);
+        res.send(err);
       }
 
+      console.log('BATCH:', batch);
       res.json(batch);
-  });
+    });
 });
 
 
 ///////////
 // LISTEN
 ///////////
-app.listen(8080); //change this for production
-console.log("App listening on port 8080");
+var port = process.env.PORT || 8080
+app.listen(port);
+console.log("App listening on port " + port);

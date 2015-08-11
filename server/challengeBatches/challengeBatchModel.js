@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var ChallengeBatchSchema = new mongoose.Schema({
+var challengeBatchSchema = new mongoose.Schema({
   id: {
     type: Number
   },
@@ -10,4 +10,4 @@ var ChallengeBatchSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('challengeBatches', ChallengeBatchSchema);
+module.exports = mongoose.model('challengeBatches', challengeBatchSchema);
