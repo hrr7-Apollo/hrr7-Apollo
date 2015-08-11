@@ -3,16 +3,44 @@ db.challengeBatches.insert({
   batch: [
     {
       "level": 0,
-      "content": "var this",
-      "timeLimit": 60
+      "content": "'Hello ' + 'world!';",
+      "timeLimit": 90
     }, {
       "level": 1,
-      "content": "getting better dude",
+      "content": "'a' < 'b';",
       "timeLimit": 90
     }, {
       "level": 2,
-      "content": "just put whatever",
-      "timeLimit": 160
+      "content": "'5' === 5;",
+      "timeLimit": 90
+    }, {
+      "level": 3,
+      "content": "null === undefined;",
+      "timeLimit": 90
+    }, {
+      "level": 4,
+      "content": "13 + !0;",
+      "timeLimit": 90
+    }, {
+      "level": 5,
+      "content": "'This is a string'.charAt(0);",
+      "timeLimit": 90
+    }, {
+      "level": 6,
+      "content": "'Hello world'.substring(0, 5);",
+      "timeLimit": 90
+    }, {
+      "level": 7,
+      "content": "'Hello'.length;",
+      "timeLimit": 90
+    }, {
+      "level": 8,
+      "content": "var someVar = 5;",
+      "timeLimit": 90
+    }, {
+      "level": 9,
+      "content": "someOtherVar = 10;",
+      "timeLimit": 90
     }
   ]
 });
@@ -22,35 +50,44 @@ db.challengeBatches.insert({
   batch: [
     {
       "level": 10,
-      "content": "figure out format for newlines",
-      "timeLimit": 60
+      "content": "var someThirdVar;",
+      "timeLimit": 90
     }, {
       "level": 11,
-      "content": "do we espace that shiz",
+      "content": "someVar += 5;",
       "timeLimit": 90
     }, {
       "level": 12,
-      "content": "or just let it be",
-      "timeLimit": 160
-    }
-  ]
-});
-
-db.challengeBatches.insert({
-  id: 2,
-  batch: [
-    {
-      "level": 20,
-      "content": "this seed file",
-      "timeLimit": 60
-    }, {
-      "level": 21,
-      "content": "took way too long",
+      "content": "someVar *= 10;",
       "timeLimit": 90
     }, {
-      "level": 22,
-      "content": "to figure out",
-      "timeLimit": 160
+      "level": 13,
+      "content": "someVar++;",
+      "timeLimit": 90
+    }, {
+      "level": 14,
+      "content": "someVar--;",
+      "timeLimit": 90
+    }, {
+      "level": 15,
+      "content": "var myArray = ['Hello', 45, true];",
+      "timeLimit": 90
+    }, {
+      "level": 16,
+      "content": "myArray[1];",
+      "timeLimit": 90
+    }, {
+      "level": 17,
+      "content": "myArray.push('World');",
+      "timeLimit": 90
+    }, {
+      "level": 18,
+      "content": "myArray.length;",
+      "timeLimit": 90
+    }, {
+      "level": 19,
+      "content": "myArray[3] = 'Hello';",
+      "timeLimit": 90
     }
   ]
 });
