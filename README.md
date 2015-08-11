@@ -50,9 +50,11 @@ Client
 - Security for POSTing fake scores (Diedra)
 - Seeding Challenges of ranging difficulty (Diedra)
 - Create endpoint to fetch challenges (Greg / Derek)
-- Testing (Diedra / Nick)
+- Testing / Grunt (Diedra / Nick)
 
 - Documentation
 - Parsing user input
-- Grunt / Gulp
 - Design?
+- Event Listener on submit button in Game (keeps hands on keyboard)
+- Refactor client to use server challenge content (batches)
+
