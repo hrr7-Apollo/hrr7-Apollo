@@ -91,3 +91,22 @@ db.challengeBatches.insert({
     }
   ]
 });
+
+db.challengeBatches.insert({
+  id: 3,
+  batch: [
+    {
+      "level": 20,
+      "content": "WAT",
+      "timeLimit": 60
+    }, {
+      "level": 21,
+      "content": "OMG",
+      "timeLimit": 90
+    }, {
+      "level": 22,
+      "content": "SHOOT ME",
+      "timeLimit": 160
+    }
+  ]
+});
