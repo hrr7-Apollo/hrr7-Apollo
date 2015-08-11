@@ -1,4 +1,4 @@
-db.challengeBatch.insert({
+db.challengeBatches.insert({
   id: 0,
   batch: [
     {
@@ -45,7 +45,7 @@ db.challengeBatch.insert({
   ]
 });
 
-db.challengeBatch.insert({
+db.challengeBatches.insert({
   id: 1,
   batch: [
     {
