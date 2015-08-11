@@ -46,13 +46,13 @@ Client
  - Get user initials
 
 ## Priorities as of 8/10/2015
-Deployment (Greg / Derek)
-Security for POSTing fake scores (Diedra)
-Seeding Challenges of ranging difficulty (Diedra)
-Create endpoint to fetch challenges (Greg / Derek)
-Testing (Diedra / Nick)
+- Deployment (Greg / Derek)
+- Security for POSTing fake scores (Diedra)
+- Seeding Challenges of ranging difficulty (Diedra)
+- Create endpoint to fetch challenges (Greg / Derek)
+- Testing (Diedra / Nick)
 
-Documentation
-Parsing user input
-Grunt / Gulp
-Design?
+- Documentation
+- Parsing user input
+- Grunt / Gulp
+- Design?
