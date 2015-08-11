@@ -5,18 +5,19 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 
-var morgan = require('morgan');             // log requests to the console (express4)
-var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
-var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
+var morgan = require('morgan');                   // log requests to the console (express4)
+var bodyParser = require('body-parser');          // pull information from HTML POST (express4)
+var methodOverride = require('method-override');  // simulate DELETE and PUT (express4)
 
 
 ///////////
 // CONFIG
 ///////////
 // DB_URI enviroment variable contains mongoLab url for production server
+DB_URI = process.env.DB_URI || 'mongodb://localhost/apollo';
 mongoose.connect(DB_URI);
 var db = mongoose.connection;
-// Log db connection errors
+// Log database connection errors
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("Mongo DB connection is open");
@@ -131,5 +132,5 @@ app.get('/api/challengeBatch/:id', function (req, res){
 // LISTEN
 ///////////
 var port = process.env.PORT || 8080
-app.listen(port); //change this for production
+app.listen(port);
 console.log("App listening on port " + port);
