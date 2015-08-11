@@ -10,4 +10,4 @@ var challengeBatchSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('challengeBatches', challengeBatchSchema);
+module.exports = mongoose.model('batch', challengeBatchSchema);

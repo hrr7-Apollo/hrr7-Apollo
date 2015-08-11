@@ -113,9 +113,7 @@ app.get('/api/leaderboard', function (req, res){
 
 // CHALLENGE BATCH - INCOMPLETE (RETURNS [])
 app.get('/api/challengeBatch/:id', function (req, res){
-  console.log(req.params.id);
-
-  ChallengeBatch.find({})
+  ChallengeBatch.find({id: req.params.id})
     .exec(function (err, batch){
       if (err) {
         console.log('ERROR:', err);
