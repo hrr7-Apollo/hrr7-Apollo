@@ -14,7 +14,7 @@ module.exports = function(grunt) {
           ],
           basePath: '',
           frameworks: ['mocha', 'chai'],
-          reporters: ['progress'],
+          reporters: ['nyan'],
           port: 9876,
           colors: true,
           browsers: ['Chrome'],
