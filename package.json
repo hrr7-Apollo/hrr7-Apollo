@@ -15,20 +15,25 @@
   "bugs": {
     "url": "https://github.com/nickbalestra/hrr7-Apollo/issues"
   },
-  "dependencies": {
-    "body-parser": "~1.13.3",
-    "bower": "^1.4.1",
-    "express": "^4.13.3",
-    "method-override": "~2.3.5",
-    "mongoose": "^4.1.1",
-    "morgan": "~1.6.1"
-  },
   "homepage": "https://github.com/nickbalestra/hrr7-Apollo#readme",
   "devDependencies": {
+    "angular": "^1.4.3",
+    "angular-ui-router": "^0.2.15",
+    "body-parser": "~1.13.3",
+    "chai": "^3.2.0",
     "express": "^4.13.3",
+    "grunt": "^0.4.5",
+    "grunt-karma": "^0.12.0",
+    "karma": "^0.13.8",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-mocha": "^0.2.0",
+    "karma-nyan-reporter": "^0.2.2",
+    "karma-requirejs": "^0.2.2",
+    "method-override": "~2.3.5",
+    "mocha": "^2.2.5",
     "mongoose": "^4.1.1",
     "morgan": "~1.6.1",
-    "body-parser": "~1.13.3",
-    "method-override": "~2.3.5"
+    "requirejs": "^2.1.20"
   }
 }
