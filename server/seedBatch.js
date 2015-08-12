@@ -1,4 +1,4 @@
-db.challengeBatches.insert({
+db.batches.insert({
   id: 0,
   batch: [
     {
@@ -45,7 +45,7 @@ db.challengeBatches.insert({
   ]
 });
 
-db.challengeBatches.insert({
+db.batches.insert({
   id: 1,
   batch: [
     {
@@ -88,6 +88,25 @@ db.challengeBatches.insert({
       "level": 19,
       "content": "myArray[3] = 'Hello';",
       "timeLimit": 90
+    }
+  ]
+});
+
+db.batches.insert({
+  id: 3,
+  batch: [
+    {
+      "level": 20,
+      "content": "WAT",
+      "timeLimit": 60
+    }, {
+      "level": 21,
+      "content": "OMG",
+      "timeLimit": 90
+    }, {
+      "level": 22,
+      "content": "SHOOT ME",
+      "timeLimit": 160
     }
   ]
 });
