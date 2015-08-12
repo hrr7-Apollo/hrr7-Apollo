@@ -1,7 +1,14 @@
 angular.module('app.game', [])
-  .controller('gameController', function($scope, $timeout, $interval, $http, gameOver, trackScore){
+  .controller('gameController', function($scope, $timeout, $interval, $http, gameOver, trackScore, trackSession){
     angular.extend($scope, gameOver);
     $scope.challangeFixtures;
+
+    // requests a new session id from the database
+    // this should be modularized into a factory method
+    $http.post('/api/sessions')
+    .then(function(res){
+      trackSession.sessionId = res.data.session;
+    });
 
     // simulates get request by accessing challengeFixtures.JSON file
     $http.get('challengeFixtures.JSON')
@@ -21,6 +28,7 @@ angular.module('app.game', [])
       stop = $interval(function(){
         $scope.timeLimit--;
 
+        // if the timer runs out before a successful submit, the player loses
         if ($scope.timeLimit === 0){
           $interval.cancel(stop);
           $scope.gameOver = true;
@@ -46,8 +54,15 @@ angular.module('app.game', [])
 
         // get user's score for this level and add it to total score
         $scope.score = $scope.timeLimit;
-        trackScore.totalScore += $scope.score;
+        $http.post('/api/sessions', {
+          session: trackSession.sessionId,
+          score: $scope.score
+        }).then(function(res){
+          // set the factory score variable to the score returned
+          trackScore.totalScore = res.data;
+        });
 
+        // after a pause
         $timeout(function(){
           // removes win message
           $scope.showMessage = false;
@@ -94,3 +109,9 @@ angular.module('app.game', [])
     obj.totalScore = 0;
     return obj;
   })
+  // this creates a session variable that we can pass to the setInitials view
+  .factory('trackSession', function(){
+    var obj = {};
+    obj.sessionId;
+    return obj;
+  });

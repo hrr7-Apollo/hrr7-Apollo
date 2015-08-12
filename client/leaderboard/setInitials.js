@@ -1,12 +1,13 @@
 angular.module('app.setInitials', [])
 
-.controller('setInitialsController', function($scope, $timeout, $interval, $http, gameOver, trackScore, $state){
+.controller('setInitialsController', function($scope, $timeout, $interval, $http, gameOver, trackScore, $state, trackSession){
   $scope.totalScore = trackScore;
 
   $scope.submitScore = function(playerInitials, playerScore){
     $http.post('/api/games', {
+      session: trackSession.sessionId,
       initials: playerInitials,
-      highscore: playerScore
+      score: playerScore
     }).then(function(res){
       $state.transitionTo('leaderboard');
     });
