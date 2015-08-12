@@ -53,11 +53,17 @@ angular.module('app.game', [])
           $scope.showMessage = false;
           // resets textbox
           $scope.playerSolution = "";
-          // sets next challenge
-          $scope.challenge = $scope.challangeFixtures[$scope.level]['content'];
-          // restarts timer for next challenge
-          $scope.timeLimit = $scope.challangeFixtures[$scope.level]['timeLimit'];
-          start($scope.challangeFixtures[$scope.level]['timeLimit']);
+          // sets next challenge if there is one
+          if ($scope.challangeFixtures[$scope.level]){
+            $scope.challenge = $scope.challangeFixtures[$scope.level]['content'];
+            // restarts timer for next challenge
+            $scope.timeLimit = $scope.challangeFixtures[$scope.level]['timeLimit'];
+            start($scope.challangeFixtures[$scope.level]['timeLimit']);
+          // otherwise show a win message and check if the score is high enough for the leaderboard
+          } else {
+            $scope.gameWon = true;
+            gameOver.checkScore($scope.totalScore);
+          }
         }, 1500);
       } else {
         // shows 'incorrect' message
