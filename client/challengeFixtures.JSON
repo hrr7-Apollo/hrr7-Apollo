@@ -2,7 +2,7 @@
   {
     "level": 0,
     "content": "var this",
-    "timeLimit": 60
+    "timeLimit": 90
   }, {
     "level": 1,
     "content": "getting better dude",
@@ -10,6 +10,6 @@
   }, {
     "level": 2,
     "content": "just put whatever",
-    "timeLimit": 160
+    "timeLimit": 90
   }
 ]
