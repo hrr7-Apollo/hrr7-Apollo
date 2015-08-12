@@ -5,6 +5,7 @@
   </header>
   <div>
     <div class="gameOver" ng-if="gameOver">GAME OVER</div>
+    <div class="gameWon" ng-if="gameWon">YOU WIN</div>
 
     <pre id="gameContent">{{ challenge }}</pre>
     <form ng-submit="checkSolution(playerSolution)">
