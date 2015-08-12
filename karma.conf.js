@@ -15,10 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      // 'node_modules/chai/chai.js',
-      //'tests/test-main.js'
-      // "node_modules/angular/angular.js",
-      // "client/**/*.js",
+
       'client/bower_components/angular/angular.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
