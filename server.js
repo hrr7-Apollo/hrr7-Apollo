@@ -149,9 +149,6 @@ app.post('/api/sessions', function (req, res){
   // if it's missing either the score or the id, or the score is higher than what the game allows, send back a 'Bad Request' response
   // please note that if the timeLimits of the various challenges are changed to be not all the same, this last check will need to happen after you've gotten the existing entry out of the database so you can see what level the user was last on and check that against the timeLimit of that level's challenge
   } else if (!req.body.session || !req.body.score || req.body.score >= 90){
-    console.log("req.body.session = ", req.body.session);
-    console.log("req.body.score = ", req.body.score);
-    console.log("sending back a 400");
     res.send(400);
   // else update the score in the collection entry of the id
   } else {
