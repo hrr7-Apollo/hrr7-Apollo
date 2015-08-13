@@ -13,11 +13,13 @@ angular.module('app.game', [])
       trackSession.sessionId = res.data.session;
     });
 
-    // simulates get request by accessing challengeFixtures.JSON file
-    $http.get('challengeFixtures.JSON')
+    // gets the challenge content from the server for the first batch
+    // and saves the content in the first level to scope variables that the DOM can access
+    $http.get('/api/challengeBatch/0')
     .then(function(res){
-      $scope.challengeFixtures = res.data;
+      $scope.batch = 0;
       $scope.level = 0;
+      $scope.challengeFixtures = res.data[0].batch;
       $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
       $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
     });
@@ -30,7 +32,6 @@ angular.module('app.game', [])
     var start = function(timeLimit){
       stop = $interval(function(){
         $scope.timeLimit--;
-
         // if the timer runs out before a successful submit, the player loses
         if ($scope.timeLimit === 0){
           $interval.cancel(stop);
@@ -53,7 +54,7 @@ angular.module('app.game', [])
         $scope.showMessage = true;
 
         // increase user's level
-        $scope.level += 1;
+        $scope.level++;
 
         // get user's score for this level and add it to total score
         $scope.score = $scope.timeLimit;
@@ -71,16 +72,34 @@ angular.module('app.game', [])
           $scope.showMessage = false;
           // resets textbox
           $scope.playerSolution = "";
-          // sets next challenge if there is one
-          if ($scope.challengeFixtures[$scope.level]){
+
+          // if that was the last challenge in challengeFixtures
+          if ( $scope.challengeFixtures[$scope.level] === undefined ){
+            // get next batch from server
+            $scope.batch++;
+            $http.get('/api/challengeBatch/' + $scope.batch)
+            .then(function(res){
+              // if the next batch is empty
+              if (!res.data.length){
+                // tell the user they won and check if the score is high enough for the leaderboard
+                $scope.gameWon = true;
+                gameOver.checkScore($scope.totalScore);
+              // otherwise
+              } else {
+                // set up the next challenge
+                $scope.level = 0;
+                $scope.challengeFixtures = res.data[0].batch;
+                $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
+                $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
+                start($scope.challengeFixtures[$scope.level]['timeLimit']);
+              }
+            });
+          // otherwise
+          } else {
+            // set up the next challenge
             $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
-            // restarts timer for next challenge
             $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
             start($scope.challengeFixtures[$scope.level]['timeLimit']);
-          // otherwise show a win message and check if the score is high enough for the leaderboard
-          } else {
-            $scope.gameWon = true;
-            gameOver.checkScore($scope.totalScore);
           }
         }, 1500);
       } else {
@@ -90,6 +109,7 @@ angular.module('app.game', [])
       }
     }
   })
+  // combine these 3 factories into one called scoreFactory
   .factory('gameOver', function($http, $state){
     var obj = {};
     obj.checkScore = function(playerScore) {
