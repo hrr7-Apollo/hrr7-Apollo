@@ -1,7 +1,7 @@
 angular.module('app.game', [])
   .controller('gameController', function($scope, $timeout, $interval, $http, gameOver, trackScore, trackSession){
     angular.extend($scope, gameOver);
-    $scope.challangeFixtures;
+    $scope.challengeFixtures;
 
     // requests a new session id from the database
     // this should be modularized into a factory method
@@ -13,10 +13,10 @@ angular.module('app.game', [])
     // simulates get request by accessing challengeFixtures.JSON file
     $http.get('challengeFixtures.JSON')
     .then(function(res){
-      $scope.challangeFixtures = res.data;
+      $scope.challengeFixtures = res.data;
       $scope.level = 0;
-      $scope.challenge = $scope.challangeFixtures[$scope.level]['content'];
-      $scope.timeLimit = $scope.challangeFixtures[$scope.level]['timeLimit'];
+      $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
+      $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
     });
 
     $scope.totalScore = trackScore;
@@ -69,11 +69,11 @@ angular.module('app.game', [])
           // resets textbox
           $scope.playerSolution = "";
           // sets next challenge if there is one
-          if ($scope.challangeFixtures[$scope.level]){
-            $scope.challenge = $scope.challangeFixtures[$scope.level]['content'];
+          if ($scope.challengeFixtures[$scope.level]){
+            $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
             // restarts timer for next challenge
-            $scope.timeLimit = $scope.challangeFixtures[$scope.level]['timeLimit'];
-            start($scope.challangeFixtures[$scope.level]['timeLimit']);
+            $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
+            start($scope.challengeFixtures[$scope.level]['timeLimit']);
           // otherwise show a win message and check if the score is high enough for the leaderboard
           } else {
             $scope.gameWon = true;
