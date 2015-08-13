@@ -10,7 +10,7 @@
     <pre id="gameContent">{{ challenge }}</pre>
     <form ng-submit="checkSolution(playerSolution)">
       <!-- Stretch idea: cols and rows could be added dynamically based on gameContent -->
-      <textarea ng-model="playerSolution" name="gameInput" id="" cols="60" rows="10" ng-disabled="gameOver"></textarea>
+      <textarea ng-model="playerSolution" name="gameInput" id="gameInput" cols="60" rows="10" ng-disabled="gameOver"></textarea>
       <br>
       <span ng-if="showMessage">{{ submitMessage }}</span>
       <br>

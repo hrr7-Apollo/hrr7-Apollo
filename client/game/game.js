@@ -3,6 +3,9 @@ angular.module('app.game', [])
     angular.extend($scope, gameOver);
     $scope.challengeFixtures;
 
+    // autofocuses on the textarea when the page loads
+    document.getElementById("gameInput").autofocus = true;
+
     // requests a new session id from the database
     // this should be modularized into a factory method
     $http.post('/api/sessions')
