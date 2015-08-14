@@ -44,7 +44,9 @@ angular.module('app.game', [])
         if ($scope.timeLimit === 0){
           $interval.cancel(stop);
           $scope.gameOver = true;
-          gameOver.checkScore($scope.totalScore);
+          $timeout(function(){
+            gameOver.checkScore($scope.totalScore);
+          }, 2500);
         }
       }, 1000);
     };
@@ -78,7 +80,7 @@ angular.module('app.game', [])
         $timeout(function(){
           // removes win message
           $scope.showMessage = false;
-          // resets textbox
+          // resets textarea
           $scope.playerSolution = "";
 
           // if that was the last challenge in challengeFixtures
@@ -91,7 +93,9 @@ angular.module('app.game', [])
               if (!res.data.length){
                 // tell the user they won and check if the score is high enough for the leaderboard
                 $scope.gameWon = true;
-                gameOver.checkScore($scope.totalScore);
+                $timeout(function(){
+                  gameOver.checkScore($scope.totalScore);
+                }, 2500);
               // otherwise
               } else {
                 // set up the next batch + challenge
