@@ -95,7 +95,7 @@ angular.module('app.game', [])
                 // setNewLevel
                 $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
                 $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
-                start($scope.challengeFixtures[$scope.level]['timeLimit']);
+                start();
 
                 // autofocuses on the textarea when the page loads
                 document.getElementById("gameInput").focus();
@@ -106,7 +106,7 @@ angular.module('app.game', [])
             // set up the next challenge
             $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
             $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
-            start($scope.challengeFixtures[$scope.level]['timeLimit']);
+            start();
 
             // autofocuses on the textarea when the page loads
             document.getElementById("gameInput").focus();
