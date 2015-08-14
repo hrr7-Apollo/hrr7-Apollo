@@ -1,10 +1,24 @@
 angular.module('app.game', [])
   .controller('gameController', function($scope, $timeout, $interval, $http, gameOver, trackScore, trackSession){
     angular.extend($scope, gameOver);
-    $scope.challengeFixtures;
 
-    // autofocuses on the textarea when the page loads
-    document.getElementById("gameInput").autofocus = true;
+    // sets up initial scope variables
+    $scope.challengeFixtures;
+    $scope.totalScore = trackScore;
+    $scope.showMessage = false;
+    $scope.gameOver = false;
+
+    // helper methods
+    var setNewBatch = function(resultsObject){
+      $scope.level = 0;
+      $scope.challengeFixtures = resultsObject.data[0].batch;
+    };
+
+    var startNewLevel = function(){
+      $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
+      $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
+      document.getElementById("gameInput").focus();
+    };
 
     // requests a new session id from the database
     // this should be modularized into a factory method
@@ -18,18 +32,10 @@ angular.module('app.game', [])
     $http.get('/api/challengeBatch/0')
     .then(function(res){
       $scope.batch = 0;
-      // setNewBatch
-      $scope.level = 0;
-      $scope.challengeFixtures = res.data[0].batch;
-      // setNewLevel
-      $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
-      $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
+      setNewBatch(res);
+      startNewLevel();
     });
 
-    $scope.totalScore = trackScore;
-    $scope.showMessage = false;
-
-    $scope.gameOver = false;
     var stop;
     var start = function(timeLimit){
       stop = $interval(function(){
@@ -88,28 +94,17 @@ angular.module('app.game', [])
                 gameOver.checkScore($scope.totalScore);
               // otherwise
               } else {
-                // set up the next challenge
-                // setNewBatch
-                $scope.level = 0;
-                $scope.challengeFixtures = res.data[0].batch;
-                // setNewLevel
-                $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
-                $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
+                // set up the next batch + challenge
+                setNewBatch(res);
+                startNewLevel();
                 start();
-
-                // autofocuses on the textarea when the page loads
-                document.getElementById("gameInput").focus();
               }
             });
           // otherwise
           } else {
             // set up the next challenge
-            $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
-            $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
+            startNewLevel();
             start();
-
-            // autofocuses on the textarea when the page loads
-            document.getElementById("gameInput").focus();
           }
         }, 1500);
       } else {
