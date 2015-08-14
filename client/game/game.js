@@ -21,11 +21,7 @@ angular.module('app.game', [])
     };
 
     // requests a new session id from the database
-    // this should be modularized into a factory method
-    $http.post('/api/sessions')
-    .then(function(res){
-      trackSession.sessionId = res.data.session;
-    });
+    trackSession.getSession();
 
     // gets the challenge content from the server for the first batch
     // and saves the content in the first level to scope variables that the DOM can access
@@ -36,6 +32,7 @@ angular.module('app.game', [])
       startNewLevel();
     });
 
+    // sets up the timer
     var stop;
     var start = function(timeLimit){
       stop = $interval(function(){
@@ -50,6 +47,7 @@ angular.module('app.game', [])
         }
       }, 1000);
     };
+    // start the timer for the first challenge
     start();
 
 
@@ -142,8 +140,17 @@ angular.module('app.game', [])
     return obj;
   })
   // this creates a session variable that we can pass to the setInitials view
-  .factory('trackSession', function(){
+  .factory('trackSession', function($http){
     var obj = {};
+
     obj.sessionId;
+
+    obj.getSession = function(){
+      $http.post('/api/sessions')
+      .then(function(res){
+        obj.sessionId = res.data.session;
+      });
+    };
+
     return obj;
   });
