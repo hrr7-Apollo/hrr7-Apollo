@@ -114,7 +114,30 @@ angular.module('app.game', [])
         $scope.submitMessage = 'You suck.'
         $scope.showMessage = true;
       }
-    }
+    };
+
+    $scope.checkChar = function(textArr){  
+      if(textArr.length > 0){
+        if(textArr === $scope.challenge){
+          $scope.checkSolution(textArr);
+        }else if(textArr[textArr.length-1] === $scope.challenge[textArr.length-1]){
+          //the just typed letter is equal to that in same index of soltn
+          if($scope.incorrectBool){//a past value was wrong
+            //change to true if values were fixed
+            if(textArr[$scope.incorrectIndex] === $scope.challenge[$scope.incorrectIndex]){
+              $scope.incorrectBool = false;
+            }
+          }   
+        }else{
+          //the current value is not equal
+          $scope.incorrectBool = true;
+          // $scope.incorrectChar = textArr[textArr.length-1];
+          $scope.incorrectIndex = textArr.length-1;
+        }
+      }
+    };
+
+
   })
   // combine these 3 factories into one called scoreFactory
   .factory('gameOver', function($http, $state){
