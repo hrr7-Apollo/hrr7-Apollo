@@ -1,49 +1,49 @@
 # hrr7-Apollo
 
-## Minimum features for complete product
-<ul>
-<li>ability to start a new game</li>
-<li>be able to complete challenges (code blocks?) in text field</li>
-<li>score based on time completed in (for each level and accumulated for this session) (have a base points number that you get for completing the level, and you get extra points for completing it faster) (current total score visible on the game screen)</li>
-<li>levels of increasing difficulty</li>
-<li>database that holds leaderboard info of highest current scores</li>
-<li>page/view for leaderboard (possibly shown to the player after completing each level)</li>
-</ul>
+## How to Get Started ##
 
-## Would be nice
-<ul>
-<li>user accounts</li>
-<li>criteria/bonus challenges</li>
-<li>report words per minute</li>
-</ul>
+Seeding the Database with Challenges:
 
-## Pie in the sky
-<li>scraping code for challenge blocks</li>
-<li>ability to choose which language the challenge is in</li>
-<li>d3 visualisation for leaderboard?</li>
-</ul>
+1. In your Terminal, navigate to the server/ directory.
+2. Enter the mongo shell by typing 'mongo' and hitting enter.
+3. Create or switch to the database that you wish to use with Homerow Apollo with the ```use``` command (for example, ```use apollo-db```).
+4. Seed the database with the challenges from challengeBatch.js by entering the following: ```load('seedBatch.js')```
+5. Exit the mongo shell with ctrl+c
+6. Run the server and open the browser to localhost:8080
+
+## Tools ##
+
+- Angular
+- Express
+- Mongoose
+- Node.js
+- Bower
+- Morgan
+- Method-Override
+- Body-Parser
+
+## Minimum Viable Product
+
+- User can start a new Game.
+- User can complete challenges by typing prompts into text fields.
+- Score earned is based on how long it takes the User to complete each level.
+- Game includes levels of increasing difficulty.
+- Database holds Leaderboard of highest current scores.
+- View for Leaderboard.
+
+## Stretch Features
+
+- User accounts
+- Criteria-based/bonus challenges
+- Report of words per minute or other performance breakdown
+- Find source for challenge content
+- Option to play Game with other programming languages
+- D3 visualization of Leaderboard
 
 ## Questions
-<ul>
-<li>what does the game actually look like? (campy arcade game vs. simple typing tool)</li>
-<li>how do users give us their initials/username for the leaderboard? (if there is no game over state, would need to get their name either at the beginning or at the end of the first level)</li>
-</ul>
 
-## Tech Stack
-Server
- - What do we want to persist and send to the client?
-  - Scores ("Top 20")
-    - User initials
-  - User information (stretch - record with their high score, login, etc)
-  - Challenge Content (maybe - if data gets too big for client)
-
-Client
- - Challenge Content
-  - List of code blocks for users to type out
- - Track user's current information
-  - Level
-  - High Score (sent to db if 'high score')
- - Get user initials
+- What does the game actually look like? (campy arcade game vs. simple typing tool)
+- How do users give us their initials/username for the leaderboard?
 
 ## Priorities as of 8/10/2015
 - Deployment (Greg / Derek)
@@ -51,10 +51,8 @@ Client
 - Seeding Challenges of ranging difficulty (Diedra)
 - Create endpoint to fetch challenges (Greg / Derek)
 - Testing / Grunt (Diedra / Nick)
-
-- Documentation
-- Parsing user input
-- Design?
-- Event Listener on submit button in Game (keeps hands on keyboard)
-- Refactor client to use server challenge content (batches)
-
+- Documentation (Greg)
+- Parsing user input (Derek)
+- Design (Greg)
+- Event Listener on submit button in Game (keeps hands on keyboard) (Derek)
+- Refactor client to use server challenge content (batches) (Diedra)
