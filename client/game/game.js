@@ -18,8 +18,10 @@ angular.module('app.game', [])
     $http.get('/api/challengeBatch/0')
     .then(function(res){
       $scope.batch = 0;
+      // setNewBatch
       $scope.level = 0;
       $scope.challengeFixtures = res.data[0].batch;
+      // setNewLevel
       $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
       $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
     });
@@ -87,11 +89,16 @@ angular.module('app.game', [])
               // otherwise
               } else {
                 // set up the next challenge
+                // setNewBatch
                 $scope.level = 0;
                 $scope.challengeFixtures = res.data[0].batch;
+                // setNewLevel
                 $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
                 $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
                 start($scope.challengeFixtures[$scope.level]['timeLimit']);
+
+                // autofocuses on the textarea when the page loads
+                document.getElementById("gameInput").focus();
               }
             });
           // otherwise
@@ -100,6 +107,9 @@ angular.module('app.game', [])
             $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
             $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
             start($scope.challengeFixtures[$scope.level]['timeLimit']);
+
+            // autofocuses on the textarea when the page loads
+            document.getElementById("gameInput").focus();
           }
         }, 1500);
       } else {
