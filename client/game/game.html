@@ -8,13 +8,15 @@
     <div class="gameWon" ng-if="gameWon">YOU WIN</div>
 
     <pre id="gameContent">{{ challenge }}</pre>
-    <form ng-submit="checkSolution(playerSolution)">
+    <form>
       <!-- Stretch idea: cols and rows could be added dynamically based on gameContent -->
-      <textarea ng-model="playerSolution" name="gameInput" id="gameInput" cols="60" rows="10" ng-disabled="gameOver"></textarea>
+      <textarea  ng-class="{box: incorrectBool}" ng-model="playerSolution" name="gameInput" id="" cols="60" rows="10" ng-disabled="gameOver" ng-change="checkChar(playerSolution)"></textarea>
+
       <br>
       <span ng-if="showMessage">{{ submitMessage }}</span>
       <br>
-      <button ng-disabled="gameOver">Submit solution</button>
+      <!-- <button ng-disabled="gameOver">Submit solution</button> -->
+      <h1 ng-if="incorrectBool">YOU TYPED AN INCORRECT LETTER</h1>
     </form>
   </div>
 </div>
