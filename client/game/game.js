@@ -116,8 +116,7 @@ angular.module('app.game', [])
       }
     };
 
-    $scope.checkChar = function(textArr){
-      
+    $scope.checkChar = function(textArr){  
       if(textArr.length > 0){
         if(textArr === $scope.challenge){
           $scope.checkSolution(textArr);
@@ -128,8 +127,7 @@ angular.module('app.game', [])
             if(textArr[$scope.incorrectIndex] === $scope.challenge[$scope.incorrectIndex]){
               $scope.incorrectBool = false;
             }
-          }
-          
+          }   
         }else{
           //the current value is not equal
           $scope.incorrectBool = true;
@@ -137,8 +135,6 @@ angular.module('app.game', [])
           $scope.incorrectIndex = textArr.length-1;
         }
       }
-
-
     };
 
 
