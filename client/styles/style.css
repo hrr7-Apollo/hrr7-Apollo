@@ -9,10 +9,15 @@ html {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover; }
-
-body {
+  background-size: cover;
   font-family: 'press_start_2pregular'; }
+
+.main-header {
+  color: #F5FFFF;
+  padding: 10px;
+  border-bottom: 10px solid #141466;
+  border-style: ridge;
+  font-size: 1.5em; }
 
 .box {
   border-color: red;
@@ -22,11 +27,21 @@ body {
   color: #141466;
   font-size: 1.5em; }
 
+button {
+  padding: 10px;
+  border: 5px solid #141466;
+  border-style: ridge; }
+
+form {
+  margin: 0 auto;
+  padding: 0; }
+  form div, form .CodeMirror {
+    margin: 0 auto; }
+
 .gameOver p, .gameWon p {
   font-size: 2.5em; }
 
 .CodeMirror {
-  position: center;
   border: 3px solid #ddd;
   line-height: 1.5;
   max-height: 200px;
@@ -36,7 +51,7 @@ body {
 
 .container {
   width: 70%;
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 10px;
   text-align: center;
   background-color: #F5FFFF;
@@ -51,5 +66,11 @@ body {
       margin: 10px 15px; }
       .container .game-header div .number {
         font-size: 2.5em; }
+  .container .leaderboard {
+    list-style-position: inside;
+    margin: 50px 10px; }
+    .container .leaderboard li {
+      margin: 30px;
+      font-size: 1.5em; }
 
 /*# sourceMappingURL=style.css.map */

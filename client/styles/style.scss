@@ -16,10 +16,15 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  font-family: 'press_start_2pregular';
 }
 
-body {
-  font-family: 'press_start_2pregular';
+.main-header {
+  color: #F5FFFF;
+  padding: 10px;
+  border-bottom: 10px solid #141466;
+  border-style: ridge;
+  font-size: 1.5em;
 }
 
 .box {
@@ -32,12 +37,26 @@ body {
   font-size: 1.5em;
 }
 
+button {
+  padding: 10px;
+  border: 5px solid #141466;
+  border-style: ridge;
+}
+
+form {
+  margin: 0 auto;
+  padding: 0;
+
+  div, .CodeMirror {
+    margin: 0 auto;
+  }
+}
+
 .gameOver p, .gameWon p {
   font-size: 2.5em;
 }
 
 .CodeMirror {
-  position: center;
   border: 3px solid #ddd;
   line-height: 1.5;
   max-height: 200px;
@@ -48,7 +67,7 @@ body {
 
 .container {
   width: 70%;
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 10px;
   text-align: center;
   background-color: #F5FFFF;
@@ -69,6 +88,16 @@ body {
       .number {
         font-size: 2.5em;
       }
+    }
+  }
+
+  .leaderboard {
+    list-style-position: inside;
+    margin: 50px 10px;
+
+    li {
+      margin: 30px;
+      font-size: 1.5em;
     }
   }
 }
