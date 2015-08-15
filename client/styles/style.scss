@@ -1,22 +1,10 @@
-@font-face {
-  font-family: 'press_start_2pregular';
-  src: url('../assets/fonts/pressStart/pressstart2p-webfont.eot');
-  src: url('../assets/fonts/pressStart/pressstart2p-webfont.eot?#iefix') format('embedded-opentype'),
-  url('../assets/fonts/pressStart/pressstart2p-webfont.woff2') format('woff2'),
-  url('../assets/fonts/pressStart/pressstart2p-webfont.woff') format('woff'),
-  url('../assets/fonts/pressStart/pressstart2p-webfont.ttf') format('truetype'),
-  url('../assets/fonts/pressStart/pressstart2p-webfont.svg#press_start_2pregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
 html {
   background: url('../assets/code-wallpaper.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family: 'press_start_2pregular';
+  font-family: 'Press Start 2P', cursive;
 }
 
 .main-header {
