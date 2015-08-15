@@ -1,40 +1,49 @@
 html {
-  background: url("../assets/code-wallpaper.jpg") no-repeat center center fixed;
+  background: url('../assets/code-wallpaper.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family: 'Press Start 2P', cursive; }
+  font-family: 'Press Start 2P', cursive;
+}
 
 .main-header {
   color: #F5FFFF;
   padding: 10px;
   border-bottom: 10px solid #141466;
   border-style: ridge;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+}
 
 .box {
   border-color: red;
-  border-width: 5px; }
+  border-width:5px;
+}
 
 #gameContent {
   color: #141466;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+}
 
 button {
   padding: 10px;
   margin: 10px;
   border: 5px solid #141466;
-  border-style: ridge; }
+  border-style: ridge;
+}
 
 form {
   margin: 0 auto;
-  padding: 0; }
-  form div, form .CodeMirror {
-    margin: 0 auto; }
+  padding: 0;
+
+  div, .CodeMirror {
+    margin: 0 auto;
+  }
+}
 
 .gameOver p, .gameWon p {
-  font-size: 2.5em; }
+  font-size: 2.5em;
+}
 
 .CodeMirror {
   border: 3px solid #ddd;
@@ -42,7 +51,8 @@ form {
   max-height: 200px;
   max-width: 800px;
   font-size: 16px;
-  text-align: left; }
+  text-align: left;
+}
 
 .container {
   width: 70%;
@@ -51,21 +61,32 @@ form {
   text-align: center;
   background-color: #F5FFFF;
   border: 10px solid #141466;
-  border-style: ridge; }
-  .container .game-header {
+  border-style: ridge;
+
+  .game-header {
+    // border: 1px solid pink;
     color: #141466;
     display: inline-block;
-    font-weight: bold; }
-    .container .game-header div {
-      display: inline-block;
-      margin: 10px 15px; }
-      .container .game-header div .number {
-        font-size: 2.5em; }
-  .container .leaderboard {
-    list-style-position: inside;
-    margin: 50px 10px 0 10px; }
-    .container .leaderboard li {
-      margin: 30px;
-      font-size: 1.5em; }
+    font-weight: bold;
 
-/*# sourceMappingURL=style.css.map */
+    div {
+      // border: 1px solid red;
+      display: inline-block;
+      margin: 10px 15px;
+
+      .number {
+        font-size: 2.5em;
+      }
+    }
+  }
+
+  .leaderboard {
+    list-style-position: inside;
+    margin: 50px 10px 0 10px;
+
+    li {
+      margin: 30px;
+      font-size: 1.5em;
+    }
+  }
+}

@@ -67,68 +67,60 @@ app.post('/api/users', function (req, res){
 // HIGH SCORES
 app.get('/api/minHighscore', function (req, res){
   //look through data base and retrieve lowest highscore
-  Game.find({})
-    .sort('-highscore')
-    .exec(function (err, games) {
-      if (err) {
-        console.log('ERROR',err);
-        res.send(err);
-      }
+  Game.find({}).sort('-highscore').exec(function (err, games) {
+    if (err) {
+      console.log('ERROR',err);
+      res.send(err);
+    }
 
-      // sends back 10th highscore
-      // arbitrary # of how many you want in Leaderboard (maybe extract to variable)
-      res.json(games[9].highscore);
+    // sends back 10th highscore
+    // arbitrary # of how many you want in Leaderboard (maybe extract to variable)
+    res.json(games[9].highscore);
   });
 });
 
 // GAMES
 app.post('/api/games', security.checkSession, function (req, res){
   // find entry in Session collection with session id to get the user's total score
-  Session.findOne({_id: req.body.session})
-    .exec(function(err, session){
-      // save it to the Games collection for the leaderboard
-      var game = new Game();
-      game.initials = req.body.initials;
-      game.highscore = session.currentScore;
-      game.date = new Date();
-      game.save(function(err){
-        if (err) {
-          console.log('ERROR:', err);
-          res.send(err);
-        }
-        res.json(game);
-      });
-
-    });
-});
-
-// LEADERBOARD
-app.get('/api/leaderboard', function (req, res){
-  Game.find({})
-    .sort('-highscore')
-    .limit(10)
-    .exec(function (err, games){
-      if(err){
-        console.log('ERROR:', err);
-        res.send(err);
-      }
-
-      res.json(games);
-    });
-});
-
-// CHALLENGE BATCH - INCOMPLETE (RETURNS [])
-app.get('/api/challengeBatch/:id', function (req, res){
-  ChallengeBatch.find({id: req.params.id})
-    .exec(function (err, batch){
+  Session.findOne({_id: req.body.session}).exec(function(err, session){
+    // save it to the Games collection for the leaderboard
+    var game = new Game();
+    game.initials = req.body.initials;
+    game.highscore = session.currentScore;
+    game.date = new Date();
+    game.save(function(err){
       if (err) {
         console.log('ERROR:', err);
         res.send(err);
       }
-
-      console.log('BATCH:', batch);
-      res.json(batch);
+      res.json(game);
     });
+  });
+});
+
+// LEADERBOARD
+app.get('/api/leaderboard', function (req, res){
+  Game.find({}).sort('-highscore').limit(10).exec(function (err, games){
+    if(err){
+      console.log('ERROR:', err);
+      res.send(err);
+    }
+
+    res.json(games);
+  });
+});
+
+// CHALLENGE BATCH - INCOMPLETE (RETURNS [])
+app.get('/api/challengeBatch/:id', function (req, res){
+  ChallengeBatch.find({id: req.params.id}).exec(function (err, batch){
+    if (err) {
+      console.log('ERROR:', err);
+      res.send(err);
+    }
+
+    console.log('BATCH:', batch);
+    res.json(batch);
+  });
 });
 
 // SESSIONS
@@ -156,24 +148,23 @@ app.post('/api/sessions', function (req, res){
       _id: req.body.session
     };
     // get existing document so we can get the current values and update them
-    Session.findOne(query)
-      .exec(function(err, session){
-        if (err) {
-          console.log('ERROR:', err);
-          res.end(err);
-        }
-        var totalScore = session.currentScore + +req.body.score;
-        var level = session.level + 1;
-        var insert = {
-          currentScore: totalScore,
-          level: level
-        };
-        Session.findOneAndUpdate(query, insert, function(err, doc){
-          if (err) return res.send(500, { error: err });
-          // send the total score back to the client
-          return res.json(totalScore);
-        });
+    Session.findOne(query).exec(function(err, session){
+      if (err) {
+        console.log('ERROR:', err);
+        res.end(err);
+      }
+      var totalScore = session.currentScore + +req.body.score;
+      var level = session.level + 1;
+      var insert = {
+        currentScore: totalScore,
+        level: level
+      };
+      Session.findOneAndUpdate(query, insert, function(err, doc){
+        if (err) return res.send(500, { error: err });
+        // send the total score back to the client
+        return res.json(totalScore);
       });
+    });
   }
 });
 

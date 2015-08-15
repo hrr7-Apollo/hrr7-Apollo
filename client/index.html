@@ -1,17 +1,23 @@
 <html ng-app="app">
 <head>
   <meta charset="UTF-8">
-  <title>Apollo</title>
+  <title>Homerow Apollo</title>
   <link rel="stylesheet" type="text/css" href="styles/style.css" />
+  <link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <div ui-view></div>
+  <header class="main-header">
+    Homerow Apollo
+  </header>
+
+  <div ui-view class="container"></div>
+
   <link rel="stylesheet" type="text/css" href="bower_components/codemirror/lib/codemirror.css">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+  <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script type="text/javascript" src="bower_components/codemirror/lib/codemirror.js"></script>
   <script type="text/javascript" src="bower_components/angular-ui-codemirror/ui-codemirror.js"></script>
-  <script type="text/javascript" src="bower_components/codemirror/mode/javascript/javascript.js"></script>  
+  <script type="text/javascript" src="bower_components/codemirror/mode/javascript/javascript.js"></script>
   <script type="text/javascript" src="app.js"></script>
   <script type="text/javascript" src="game/game.js"></script>
   <script type="text/javascript" src="leaderboard/leaderboard.js"></script>
