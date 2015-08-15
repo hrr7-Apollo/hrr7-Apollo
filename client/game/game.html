@@ -1,13 +1,20 @@
 <div ng-controller="gameController">
-  <header>
-    <span><strong>Total Score: </strong>{{ totalScore.totalScore }}</span>
-    <span><strong>Time Left: </strong>{{ timeLimit }}</span>
+  <header class="game-header">
+    <div>
+      <p>Total Score</p>
+      <p class='number'>{{ totalScore.totalScore }}</p>
+    </div>
+    <div>
+      <p>Time Left</p>
+      <p class='number'>{{ timeLimit }}</p>
+    </div>
   </header>
-  <div>
-    <div class="gameOver" ng-if="gameOver">GAME OVER</div>
-    <div class="gameWon" ng-if="gameWon">YOU WIN</div>
 
-    <pre id="gameContent">{{ challenge }}</pre>
+  <div>
+    <div class="gameOver" ng-if="gameOver"><p>GAME OVER</p></div>
+    <div class="gameWon" ng-if="gameWon"><p>YOU WIN</p></div>
+
+    <p id="gameContent">{{ challenge }}</p>
     <form>
       <!-- Stretch idea: cols and rows could be added dynamically based on gameContent -->
       <textarea ui-codemirror ui-codemirror-opts="editorOptions" ng-class="{box: incorrectBool}" id="gameInput" ng-model="playerSolution" name="gameInput" cols="60" rows="10" ng-disabled="gameOver" ng-change="checkChar(playerSolution)"></textarea>

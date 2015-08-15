@@ -1,17 +1,25 @@
 @font-face {
-  font-family: '04b30';
-  src: url('../fonts/bubbleBit/04b_30__-webfont.eot');
-  src: url('../fonts/bubbleBit/04b_30__-webfont.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/bubbleBit/04b_30__-webfont.woff2') format('woff2'),
-  url('../fonts/bubbleBit/04b_30__-webfont.woff') format('woff'),
-  url('../fonts/bubbleBit/04b_30__-webfont.ttf') format('truetype'),
-  url('../fonts/bubbleBit/04b_30__-webfont.svg#04b30') format('svg');
+  font-family: 'press_start_2pregular';
+  src: url('../assets/fonts/pressStart/pressstart2p-webfont.eot');
+  src: url('../assets/fonts/pressStart/pressstart2p-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../assets/fonts/pressStart/pressstart2p-webfont.woff2') format('woff2'),
+  url('../assets/fonts/pressStart/pressstart2p-webfont.woff') format('woff'),
+  url('../assets/fonts/pressStart/pressstart2p-webfont.ttf') format('truetype'),
+  url('../assets/fonts/pressStart/pressstart2p-webfont.svg#press_start_2pregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
+html {
+  background: url('../assets/code-wallpaper.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
-  font-family: '04b30';
+  font-family: 'press_start_2pregular';
 }
 
 .box {
@@ -19,16 +27,48 @@ body {
   border-width:5px;
 }
 
+#gameContent {
+  color: #141466;
+  font-size: 1.5em;
+}
+
+.gameOver p, .gameWon p {
+  font-size: 2.5em;
+}
+
 .CodeMirror {
+  position: center;
   border: 3px solid #ddd;
   line-height: 1.5;
   max-height: 200px;
   max-width: 800px;
   font-size: 16px;
+  text-align: left;
 }
 
 .container {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
-  border: 1px solid blue;
+  padding: 10px;
+  text-align: center;
+  background-color: #F5FFFF;
+  border: 10px solid #141466;
+  border-style: ridge;
+
+  .game-header {
+    // border: 1px solid pink;
+    color: #141466;
+    display: inline-block;
+    font-weight: bold;
+
+    div {
+      // border: 1px solid red;
+      display: inline-block;
+      margin: 10px 15px;
+
+      .number {
+        font-size: 2.5em;
+      }
+    }
+  }
 }
