@@ -29,6 +29,7 @@ html {
 
 button {
   padding: 10px;
+  margin: 10px;
   border: 5px solid #141466;
   border-style: ridge; }
 
@@ -68,7 +69,7 @@ form {
         font-size: 2.5em; }
   .container .leaderboard {
     list-style-position: inside;
-    margin: 50px 10px; }
+    margin: 50px 10px 0 10px; }
     .container .leaderboard li {
       margin: 30px;
       font-size: 1.5em; }

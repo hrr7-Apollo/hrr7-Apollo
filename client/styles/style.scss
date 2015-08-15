@@ -39,6 +39,7 @@ html {
 
 button {
   padding: 10px;
+  margin: 10px;
   border: 5px solid #141466;
   border-style: ridge;
 }
@@ -93,7 +94,7 @@ form {
 
   .leaderboard {
     list-style-position: inside;
-    margin: 50px 10px;
+    margin: 50px 10px 0 10px;
 
     li {
       margin: 30px;
