@@ -1,3 +1,12 @@
+@font-face {
+  font-family: '04b30';
+  src: url("../fonts/bubbleBit/04b_30__-webfont.eot");
+  src: url("../fonts/bubbleBit/04b_30__-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bubbleBit/04b_30__-webfont.woff2") format("woff2"), url("../fonts/bubbleBit/04b_30__-webfont.woff") format("woff"), url("../fonts/bubbleBit/04b_30__-webfont.ttf") format("truetype"), url("../fonts/bubbleBit/04b_30__-webfont.svg#04b30") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+body {
+  font-family: '04b30'; }
+
 .box {
   border-color: red;
   border-width: 5px; }
@@ -8,5 +17,10 @@
   max-height: 200px;
   max-width: 800px;
   font-size: 16px; }
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid blue; }
 
 /*# sourceMappingURL=style.css.map */
