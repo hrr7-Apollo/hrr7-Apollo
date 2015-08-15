@@ -2,6 +2,14 @@ angular.module('app.game', [])
   .controller('gameController', function($scope, $timeout, $interval, $http, gameOver, trackScore, trackSession){
     angular.extend($scope, gameOver);
 
+    // code editor settings
+    $scope.editorOptions = {
+        lineWrapping : true,
+        lineNumbers: true,
+        tabSize: 2,
+        autofocus: true
+    };
+
     // sets up initial scope variables
     $scope.challengeFixtures;
     $scope.totalScore = trackScore;
@@ -17,7 +25,6 @@ angular.module('app.game', [])
     var startNewLevel = function(){
       $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
       $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
-      document.getElementById("gameInput").focus();
     };
 
     // requests a new session id from the database

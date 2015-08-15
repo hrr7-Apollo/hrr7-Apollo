@@ -21,6 +21,7 @@ Seeding the Database with Challenges:
 - Morgan
 - Method-Override
 - Body-Parser
+- CodeMirror
 
 ## Minimum Viable Product
 

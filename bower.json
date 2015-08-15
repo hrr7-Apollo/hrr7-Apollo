@@ -16,6 +16,7 @@
   "dependencies": {
     "angular": "~1.4.3",
     "angular-ui-router": "~0.2.15",
-    "angular-mocks": "~1.4.3"
+    "angular-mocks": "~1.4.3",
+    "angular-ui-codemirror": "~0.3.0"
   }
 }
