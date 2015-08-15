@@ -65,7 +65,7 @@ angular.module('app.game', [])
         stop = undefined;
 
         // shows 'correct' message
-        $scope.submitMessage = 'You are fucking amazing!'
+        $scope.submitMessage = 'You are amazing!'
         $scope.showMessage = true;
 
         // increase user's level
@@ -123,7 +123,7 @@ angular.module('app.game', [])
       }
     };
 
-    $scope.checkChar = function(textArr){  
+    $scope.checkChar = function(textArr){
       if(textArr.length > 0){
         if(textArr === $scope.challenge){
           $scope.checkSolution(textArr);
@@ -134,7 +134,7 @@ angular.module('app.game', [])
             if(textArr[$scope.incorrectIndex] === $scope.challenge[$scope.incorrectIndex]){
               $scope.incorrectBool = false;
             }
-          }   
+          }
         }else{
           //the current value is not equal
           $scope.incorrectBool = true;
