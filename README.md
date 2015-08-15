@@ -18,10 +18,12 @@ Seeding the Database with Challenges:
 - Mongoose
 - Node.js
 - Bower
+- Grunt
 - Morgan
 - Method-Override
 - Body-Parser
 - CodeMirror
+- Sass
 
 ## Minimum Viable Product
 
