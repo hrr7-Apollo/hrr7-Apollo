@@ -14,7 +14,7 @@
     <div class="gameOver" ng-if="gameOver"><p>GAME OVER</p></div>
     <div class="gameWon" ng-if="gameWon"><p>YOU WIN</p></div>
 
-    <p id="gameContent">{{ challenge }}</p>
+    <p id="gameContent" class="noselect">{{ challenge }}</p>
     <form>
       <!-- Stretch idea: cols and rows could be added dynamically based on gameContent -->
       <textarea ui-codemirror ui-codemirror-opts="editorOptions" ng-class="{box: incorrectBool}" id="gameInput" ng-model="playerSolution" name="gameInput" cols="60" rows="10" ng-disabled="gameOver" ng-change="checkChar(playerSolution)"></textarea>
