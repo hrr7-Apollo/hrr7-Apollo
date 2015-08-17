@@ -1,8 +1,9 @@
 angular.module('app.setInitials', [])
 
-.controller('setInitialsController', function($scope, $timeout, $interval, $http, scoreFactory, $state, sessionFactory){
+.controller('setInitialsController', function($scope, $timeout, $interval, $http, scoreFactory, $state, sessionFactory, levelFactory){
   // adds the total score to the scope so it can be viewed in the DOM
   $scope.totalScore = scoreFactory;
+  $scope.totalLevel = levelFactory;
 
   // sends the player's score to the database for the leaderboard
   $scope.submitScore = function(playerInitials, playerScore){
