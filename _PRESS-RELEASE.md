@@ -7,7 +7,7 @@
   > For anyone who enjoys games and wants to improve their typing skills.
 
 ## Summary ##
-  > In Homerow Apollow, you will be given a prompt to type, and a time limit to complete the prompt under.
+  > In Homerow Apollo, you will be given a prompt to type, and a time limit to complete the prompt under.
   Earn points and move on to the next level by correctly typing out the prompt within the time limit.
 
 ## Problem ##
