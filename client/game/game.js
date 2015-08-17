@@ -92,8 +92,6 @@ angular.module('app.game', [])
       // shows 'correct' message
       $scope.submitMessage = 'You are amazing!'
       $scope.showMessage = true;
-      // disables typing in code editor
-      $scope.editorOptions = {readOnly: "nocursor"};
       // increase user's level
       $scope.level++;
       // get user's score for this level and add it to total score
@@ -121,7 +119,6 @@ angular.module('app.game', [])
         // set up the next challenge
         startNewLevel();
         startTimer();
-        $scope.editorOptions = {readOnly: false};
       // if that was the last challenge in challengeFixtures
       } else {
         // get next batch from server
@@ -134,11 +131,11 @@ angular.module('app.game', [])
             setNewBatch(res);
             startNewLevel();
             startTimer();
-            $scope.editorOptions = {readOnly: false};
           // if there are no more challenge batches
           } else {
             // tell the user they won the game and check if the score is high enough for the leaderboard
             $scope.gameWon = true;
+            $scope.editorOptions = {readOnly: "nocursor"};
             $timeout(function(){
               scoreFactory.checkScore($scope.totalScore);
             }, 2500);
