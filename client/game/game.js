@@ -45,7 +45,7 @@ angular.module('app.game', [])
         if ($scope.timeLimit === 0){
           $scope.editorOptions = {readOnly: "nocursor"};
           $interval.cancel(stop);
-          $scope.scoreFactory = true;
+          $scope.gameOver = true;
           $timeout(function(){
             scoreFactory.checkScore($scope.totalScore);
           }, 2500);
