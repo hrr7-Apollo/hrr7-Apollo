@@ -9,6 +9,7 @@ module.exports = function(grunt) {
           files: ['client/bower_components/angular/angular.js',
             'client/bower_components/angular-mocks/angular-mocks.js',
             'client/bower_components/angular-ui-router/release/angular-ui-router.js',
+            'client/bower_components/angular-ui-codemirror/ui-codemirror.js',
             'tests/**/*.js',
             'client/game/**/*.js',
             'client/leaderboard/**/*.js',
