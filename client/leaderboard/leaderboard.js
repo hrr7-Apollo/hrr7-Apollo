@@ -1,7 +1,8 @@
 angular.module('app.leaderboard', [])
 
-.controller('leaderboardController', function($scope, $state, $http, trackScore, gameOver, trackSession){
+.controller('leaderboardController', function($scope, $state, $http, scoreFactory, sessionFactory){
 
+  // get scores for leaderboard
   $http.get('/api/leaderboard')
   .then(function(res){
     $scope.scores = res.data;
@@ -9,9 +10,9 @@ angular.module('app.leaderboard', [])
   
   $scope.startGame = function(){
     // resets the player's score in the game view
-    trackScore.totalScore = 0;
+    scoreFactory.totalScore = 0;
     // requests a new session id from the database
-    trackSession.getSession();
+    sessionFactory.getSession();
     // redirects back to the game view
     $state.transitionTo('game');
   };
