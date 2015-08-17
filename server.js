@@ -37,7 +37,6 @@ app.use(methodOverride());
 ///////////
 // MODELS
 ///////////
-var User = require('./server/users/userModel.js');
 var Game = require('./server/games/gameModel.js');
 var ChallengeBatch = require('./server/challengeBatches/challengeBatchModel.js');
 var Session = require('./server/security/sessionModel.js');
