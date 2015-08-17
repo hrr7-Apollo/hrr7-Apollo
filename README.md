@@ -1,4 +1,12 @@
-# hrr7-Apollo
+# Homerow Apollo
+
+![Homerow Apollo](./client/assets/home.png "Homerow Apollo")
+
+## What is it? ##
+
+In Homerow Apollo, you will be given a prompt to type, and a time limit to complete the prompt under.
+Earn points and move on to the next level by correctly typing out the prompt within the time limit.
+The best scores will earn a spot on the Leaderboard, so do your best!
 
 ## How to Get Started ##
 
@@ -15,16 +23,18 @@ Seeding the Database with Challenges and Game records:
 ## Tools ##
 
 - Angular
+- Sass
+- Bower
 - Express
 - Mongoose
 - Node.js
-- Bower
 - Grunt
 - Morgan
 - Method-Override
 - Body-Parser
 - CodeMirror
-- Sass
+- Karma / Mocha / Chai / ng-mock (Unit Tests)
+- Protractor / Jasmine (End to End Tests)
 
 ## Minimum Viable Product
 
