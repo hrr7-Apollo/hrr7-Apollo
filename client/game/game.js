@@ -1,5 +1,5 @@
 angular.module('app.game', [])
-  .controller('gameController', function($scope, $timeout, $interval, $http, scoreFactory, sessionFactory){
+  .controller('gameController', function($scope, $timeout, $interval, $http, scoreFactory, sessionFactory, levelFactory){
 
 
     //////////
@@ -12,8 +12,9 @@ angular.module('app.game', [])
         tabSize: 2,
         autofocus: true
     };
-    // links factory score variable with scope score variable that is shown in the DOM
+    // links factory score and level variables with their scope versions that are shown in the DOM
     $scope.totalScore = scoreFactory;
+    $scope.totalLevel = levelFactory;
     // requests a new session id from the database
     sessionFactory.getSession();
 
@@ -25,6 +26,7 @@ angular.module('app.game', [])
     var startNewLevel = function(){
       $scope.challenge = $scope.challengeFixtures[$scope.level]['content'];
       $scope.timeLimit = $scope.challengeFixtures[$scope.level]['timeLimit'];
+      levelFactory.totalLevel++;
     };
 
     // gets the challenge content from the server for the first batch
@@ -180,6 +182,13 @@ angular.module('app.game', [])
         obj.sessionId = res.data.session;
       });
     };
+
+    return obj;
+  })
+  .factory('levelFactory', function(){
+    var obj = {};
+
+    obj.totalLevel = -1;
 
     return obj;
   });
