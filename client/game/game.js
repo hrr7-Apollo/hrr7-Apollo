@@ -43,8 +43,9 @@ angular.module('app.game', [])
         $scope.timeLimit--;
         // if the timer runs out before a successful submit, the player loses
         if ($scope.timeLimit === 0){
+          $scope.editorOptions = {readOnly: "nocursor"};
           $interval.cancel(stop);
-          $scope.scoreFactory = true;
+          $scope.gameOver = true;
           $timeout(function(){
             scoreFactory.checkScore($scope.totalScore);
           }, 2500);
@@ -79,6 +80,8 @@ angular.module('app.game', [])
           $scope.submitMessage = 'You typed an incorrect letter!'
           $scope.showMessage = true;
         }
+      } else {
+
       }
     };
 
@@ -132,6 +135,7 @@ angular.module('app.game', [])
           } else {
             // tell the user they won the game and check if the score is high enough for the leaderboard
             $scope.gameWon = true;
+            $scope.editorOptions = {readOnly: "nocursor"};
             $timeout(function(){
               scoreFactory.checkScore($scope.totalScore);
             }, 2500);
