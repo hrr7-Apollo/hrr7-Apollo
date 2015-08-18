@@ -10,6 +10,11 @@ The best scores will earn a spot on the Leaderboard, so do your best!
 
 ## How to Get Started ##
 
+Install dependencies:
+
+1. From root directory, run ```npm install```.
+2. From root directory, run ```bower install```.
+
 Seeding the Database with Challenges and Game records:
 
 1. In your Terminal, navigate to the server/ directory.
